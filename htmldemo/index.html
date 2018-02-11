@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+
+<body>
+	<div id="result"></div>
+</body>
+<script type="text/javascript">
+	var obj = new Proxy({}, {
+		get: function(target, key, receiver) {
+			console.log(`getting ${key}!`);
+			return Reflect.get(target, key, receiver);
+		},
+		set: function(target, key, value, receiver) {
+			console.log(`setting ${key}!`);
+			return Reflect.set(target, key, value, receiver);
+		}
+	});
+	
+	var fn = x => x * x;
+	
+	window.onload = function() {
+		var a = obj;
+		//var b = new obj();
+		console.log(fn(10));
+	}
+	
+	var user = {
+		name: "张三",
+		age:"18",
+		getHight: function() {
+			return "180cm";
+		}
+	}
+	
+	function string2int(s) {
+
+	  var str = s.split(""); 
+	  console.log(str.length);
+	  var result = str.reduce(function(x, y) {
+	    console.log("x:" + x + "  y:" + y);
+	    return x * 10 + y;
+	  });
+	console.log(result );
+	    return 0;
+	
+	}
+	
+	// 测试:
+	if (string2int('0') === 0 && string2int('12345') === 12345 && string2int('12300') === 12300) {
+	    if (string2int.toString().indexOf('parseInt') !== -1) {
+	        console.log('请勿使用parseInt()!');
+	    } else if (string2int.toString().indexOf('Number') !== -1) {
+	        console.log('请勿使用Number()!');
+	    } else {
+	        console.log('测试通过!');
+	    }
+	}
+	else {
+	    console.log('测试失败!');
+	}
+	
+	
+</script>
+
+</html>

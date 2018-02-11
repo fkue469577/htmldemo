@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script  src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+	<style type="text/css">
+		.fixedNav{
+			 position:fixed; 
+			 top:0px;
+			 left:0px;
+			 width:100%;
+			 z-index:100000;
+			 _position:absolute;
+			 _top:expression(eval(document.documentElement.scrollTop));
+		}
+	</style>
+	<script>  
+        window.onload = function() {
+        	for (var i=0; i<200; i++) {
+        		$("#div1").append("asdf<br>");
+        	}
+        	
+		}
+    </script> 
+</head>
+<body>
+	<div class="fixedNav" id="div">
+	    <p>导航固定</p>
+	</div>
+	
+	<div id="div1">
+		
+		
+	</div>
+</body>
+</html>
